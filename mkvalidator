@@ -1,8 +1,18 @@
 #!/bin/bash
 . /etc/environment
-
+echo "Searching $1 for largest mkv file"
 MKV=$(find $1 -name '*.mkv' -printf '%s "%p"\n'|sort -nr|head -n 1|cut -d '"' -f 2)
-if [ -z "$MKV" ]; then exit 0; fi
+if [ -z "$MKV" ]; then 
+  echo "No mkv file found"
+  exit 0
+fi
+echo "Validating $MKV"
+/usr/local/bin/mkvalidator --quiet "$MKV"
+STATUS=$?
+if ($STATUS = 0); then
+  echo "No errors :)"
+  exit 0
+fi
 
-/usr/local/bin/mkvalidator "$MKV"
-exit $?
+echo "Oh Bugger, errors found!"
+exit $STATUS
