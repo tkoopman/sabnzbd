@@ -9,10 +9,10 @@ fi
 echo "Validating $MKV"
 /usr/local/bin/mkvalidator --quiet "$MKV"
 STATUS=$?
-if ($STATUS = 0); then
-  echo "No errors :)"
-  exit 0
+if [ $STATUS -ne 0 ]; then
+  echo "Oh Bugger, errors found!"
+  exit $STATUS  
 fi
 
-echo "Oh Bugger, errors found!"
-exit $STATUS
+echo "No errors :)"
+exit 0
