@@ -1,4 +1,6 @@
 #!/bin/bash
+. /etc/environment
+
 MKV=$(find $1 -name '*.mkv' -printf '%s "%p"\n'|sort -nr|head -n 1|cut -d '"' -f 2)
 if [ -z "$MKV" ]; then exit 0; fi
 
