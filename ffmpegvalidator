@@ -1,0 +1,19 @@
+#!/bin/bash
+. /etc/environment
+
+echo "Searching $1 for largest file"
+FILE=$(find $1 -printf '%s "%p"\n'|sort -nr|head -n 1|cut -d '"' -f 2)
+if [ -z "$FILE" ]; then 
+  echo "No files found"
+  exit 0
+fi
+echo "Validating $FILE"
+OUTPUT=$(/usr/bin/ffmpeg -v error -i "$FILE" -f null - 2>&1)
+echo "$OUTPUT"
+if [ ! -z "${OUTPUT// }" ]; then
+  echo "Oh bugger, errors :("
+  exit 1
+fi
+
+echo "No errors :)"
+exit 0
