@@ -1,12 +1,10 @@
 # sabnzbd
-Docker image linuxserver/sabnzbd + MKV tools and sabnzbd mkvalidator script.  
+Docker image linuxserver/sabnzbd + ffmpeg tools and sabnzbd validator script.  
 Script can be used to fail any downloads that contain mkv files that fail mkv validation.  
 Only the largest mkv file downloaded will be checked.  
-  
-Now also contains ffmpeg validation script that you can use instead.
 
 # Script
 To use script in sabnzbd settings configure the following  
 Folders > Script Folder: /scripts  
 Switches > User script can flag job as failed: enable  
-Categories: Set Script to mkvalidator on any categories you want to use script on.
+Categories: Set Script to ffmpegvalidator on any categories you want to use script on.
