@@ -25,7 +25,10 @@ PATH="/root/bin:$PATH" PKG_CONFIG_PATH="/root/ffmpeg_build/lib/pkgconfig" ./conf
     --enable-libvpx \
     --enable-libx264 \
     --enable-libx265 \
-    --enable-nonfree
+    --enable-nonfree \
+    --disable-ffplay \
+    --disable-ffprobe \
+    --disable-doc
 PATH="/root/bin:$PATH" make
 make install
 
